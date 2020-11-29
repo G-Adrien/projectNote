@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+<header>
+<div class="jumbotron jumbotron-fluid py-4 yellowBg">
+    <div class="container">
+    <h1 class="display-4 fontTitle">ProjectNote</h1>
+    <p class="lead fontText">Gerer vos projets de façon simplifiée.</p>
+    </div>
+</div>
+</header>
+<div class="container">
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+
+        <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+        <label for="inputPassword">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+        <input type="hidden" name="_csrf_token"
+            value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+        #}
+
+        <button class="btn btn-lg yellowBg my-4 btnForm" type="submit">
+            S'identifier
+        </button>
+    </form>
+
+    <p>Vous n'avez pas de comptes ? Cliquez <a href="{{path("app_register")}}">ICI</a> pour en créer un.</p>
+</div>
+<footer class="jumbotron jumbotron-fluid text-white redBg d-flex justify-content-center align-items-center">
+    <section class="container">
+        <p class="mb-0">ProjectNote© - 2020 / Tous droits réservés.</p>
+    </section>
+</footer>
+
+{% endblock %}
