@@ -1,16 +1,42 @@
 {% extends 'base.html.twig'%}
 
 {% block body %}
-  <h1>Test</h1>
+  <header>
+    <div class="jumbotron jumbotron-fluid py-4 yellowBg">
+      <div class="container">
+        <h1 class="display-4 fontTitle">ProjectNote</h1>
+        <p class="lead fontText">Gerer vos projets de façon simplifiée.</p>
+      </div>
+    </div>
+  </header>
+  <nav class="container d-flex justify-content-between">
+    <div >
+      <ul class="d-flex justify-content-between">
+        <li class="mx-2">
+          <a class="btn btnNav" href="{{path("project_index")}}">Vos projets</a>      
+        </li>
+        <li>
+          <a class="btn btnNav" href="#">Archives</a>      
+        </li>
+      </ul>
+    </div> 
+    <div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <a class="btn redBg text-white" href="{{path("app_logout")}}">Déconnexion</a>
+    {% endif %}
+    </div>
+  </nav>
+
+
   <main class="container">
     {% block main %}
     {% endblock %}
   </main>
 
 
-  <footer class="jumbotron jumbotron-fluid mt-5 mb-0 bg-secondary text-white text-center">
-    <section class="container">
-      <p>Une application développée par les frères rape-tout, tous droits réservés.</p>
+  <footer class="jumbotron jumbotron-fluid text-white redBg">
+    <section class="container d-flex justify-content-center align-items-center">
+      <p class="mb-0">ProjectNote© - 2020 / Tous droits réservés.</p>
     </section>
   </footer>
 {% endblock %}

@@ -1,0 +1,59 @@
+/* #############   utilities class   ############# */
+
+.yellowBg{
+    background-color: #F1B819;
+}
+
+.redBg{
+    background-color: #AB3428;
+}
+.ivoryBg{
+    background-color: #FAFAF0;
+}
+
+body{
+    background-color: #FAFAF0;
+    min-height: 100vh;
+}
+
+ul{
+    list-style: none;
+}
+
+
+/* #############   Font   ############# */
+
+.fontTitle{
+    font-family: 'Suranna', serif;
+}
+.fontText{
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2{
+    font-family: 'Suranna', serif;
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+}
+
+label{
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+/* ####################################### */
+
+.btnForm{
+    border: solid black 1px;
+}
+.btnNav{
+    border: solid #AB3428 2px;
+    border-radius: 6px;
+    color: #AB3428;
+}
+
+footer{
+    height: 50px;
+}

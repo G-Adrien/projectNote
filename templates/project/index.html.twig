@@ -1,0 +1,91 @@
+{% extends 'template.html.twig' %}
+
+{% block title %}Project index{% endblock %}
+
+{% block main %}
+
+    <h1>Vos projets</h1>
+
+<!-- Button trigger modal create project -->
+<button type="button" class="btn yellowBg btnForm" data-toggle="modal" data-target="#exampleModalCenter">
+  Ajouter un projet
+</button>
+
+<!-- Modal create project -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un projet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{form(form)}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn yellowBg btnForm">Ajouter</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end Modal create project -->
+
+
+        {% for project in projects %}
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Header</div>
+                    <div class="card-body">
+                    <h5 class="card-title">Light card title</h5>of
+                    <p class="card-text">Some quick example ulk  the card's content.</p>
+                    <a href="#" class="btn btn-primary">Button</a>
+                </div>
+            </div>
+        {% else %}
+        <div class="d-flex justify-content-center my-5">
+            <p>Pas de projet en cours, cliquez 
+            <a href="#" type="button" data-toggle="modal" data-target="#exampleModalCenter">ICI</a>
+            pour en créer un.</p>
+        </div>
+
+        {% endfor %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name_project</th>
+                <th>Description</th>
+                <th>Creation_date</th>
+                <th>Deadline</th>
+                <th>Status_project</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.nameProject }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.creationDate ? project.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ project.deadline ? project.deadline|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ project.statusProject ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('project_show', {'id': project.id}) }}">show</a>
+                    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('project_new') }}">Create new</a>
+{% endblock %}

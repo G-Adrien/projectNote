@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+<header>
+<div class="jumbotron jumbotron-fluid py-4 yellowBg">
+    <div class="container">
+    <h1 class="display-4 fontTitle">ProjectNote</h1>
+    <p class="lead fontText">Gerer vos projets de façon simplifiée.</p>
+    </div>
+</div>
+</header>
+<div class="container main">
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    <h2>S'inscrire</h2>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.lastname,{
+            label:'Nom'
+        }) }}
+        {{ form_row(registrationForm.firstname,{
+            label:'Prénom'
+        }) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms,{
+            label:'Accepter les conditions'
+        }) }}
+
+        <button type="submit" class="btn btn-lg yellowBg my-4 btnForm">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+        <p>Vous avez déjà un compte ? Cliquez <a href="{{path("app_login")}}">ICI</a> pour vous connecter.</p>
+</div>
+<footer class="jumbotron jumbotron-fluid text-white  redBg d-flex align-items-center">
+    <section class="container  ">
+        <p class="mb-0 text-center">ProjectNote© - 2020 / Tous droits réservés.</p>
+    </section>
+</footer>
+{% endblock %}
